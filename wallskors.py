@@ -26,28 +26,22 @@ def info():
 
 def heads():
     global head
-    head = E + H + """
-______ _____ _    _____ ___    
-|  _  \  ___| |  |_   _/ _ \   
-| | | | |__ | |    | |/ /_\ \  
-| | | |  __|| |    | ||  _  |  
-| |/ /| |___| |____| || | | |  
-|___/ \____/\_____/\_/\_| |_/  
-                                
-"""+F+"""____________ _____________   __
-"""+F+"""| ___ \ ___ \  _  |  _  \ \ / /
-"""+F+"""| |_/ / |_/ / | | | | | |\ V / 
-"""+F+"""| ___ \    /| | | | | | | \ /  
-"""+F+"""| |_/ / |\ \\ \_/ / |/ /  | |  
-"""+F+"""\____/\_| \_|\___/|___/   \_/  
-"""+E
+    head = E + F + """
+ ____  _____ ____  ____  _   _    _    _  _______ 
+|  _ \| ____|  _ \/ ___|| \ | |  / \  | |/ | ____|
+| |_) |  _| | | | \___ \|  \| | / _ \ | ' /|  _|  
+|  _ <| |___| |_| |___) | |\  |/ ___ \| . \| |___ 
+|_| \_|_____|____/|____/|_| \_/_/   \_|_|\_|_____|
+                                                  
+""" + E
+
 def tol():
 	print(G+'''
 	NAVIGATEUR INTERNET
   	'''+F+'''
   	1) Navigateur lynx
   	2) Navigateur w3m
-		3) Sortir
+	3) Sortir
   	'''+W+'''(---------+---------)
 '''+E)
 	try:
@@ -83,7 +77,7 @@ def deux():
   	4) Bruteforce Cpanel
   	5) Bruteforce mail
     6) Bruteforce Revenu
-        7) Sortir
+    7) Sortir
   	'''+H+'''(---------+---------)
     Tapez 'help' pour savoir comment utiliser le guide.'''+E)
 	try:
@@ -95,20 +89,20 @@ def deux():
 	if g == 'help':
 		info()
 	elif int(g) == 1:
-		br = input('ID_Cible>')
+		br = input('ID_Cible->')
 		os.system('''python2 modules/fb.py '''+br+''' pas.txt''')
 	elif int(g) == 2:
-		lr = input('utilisateur : ')
+		lr = input('Utilisateur-> ')
 		os.system('''python2 modules/ig.py '''+lr+''' pas.txt''')
 	elif int(g) == 3:
 		brut_ftp()
 	elif int(g) == 4:
-		df = input('lien cpanel : ')
+		df = input('Lien cpanel-> ')
 		os.system('''perl modules/cp.pl '''+df+''' pas.txt''')
 	elif int(g) == 5:
 		brut_mail()
 	elif int(g) == 6:
-		to = input('Utilisateur revenu: ')
+		to = input('Utilisateur revenu-> ')
 		os.system('''python2 modules/rf.py '''+to+''' pas.txt''')
 	elif int(g) == 7:
 		print('''Vous retournez en arrière.''')
@@ -118,7 +112,7 @@ def deux():
 		deux()
 
 def trois():
-	print(F+'Ouverture de Lazymux.')
+	print(F+'Ouverture de Lazymux...')
 	time.sleep(3)
 	os.system('python2 lazymux.py')
 
@@ -132,7 +126,7 @@ def cinq():
 	print(head)
 	print('Cible du site web :')
 	site = input(B+'Wallskors/cible»'+E)
-	print('''Entrez le dos:
+	print('''Entrez le type de dos:
 		1) Hard Dos
  		2) Low Dos''')
 	level = int(input(B+'Wallskors»Dos»Level»'+E))
@@ -142,25 +136,26 @@ def cinq():
 		os.system('python3 modules/dos.py '+site)
 
 def six():
-  os.system('clear')
-  print('INFORMATIONS DE L\'APPAREIL')
-  print('[ Status: ]')
-  os.system('uname -n\n')
-  print('\n[ Noyau: ]')
-  os.system("uname -s")
-  print("\n[ Version du noyau: ]")
-  os.system("uname -v")
-  os.system("uname -r")
-  print("\n[ OS: ]")
-  os.system("uname -o")
-  print("\n[ Matériel: ]")
-  os.system("uname -m")
-  print("\n[ Processeur: ]")
-  os.system("uname -p")
-  print("\n[ Status matériel: ]")
-  os.system("uname -i")
-  time.sleep(4)
-  Index()
+    f
+    os.system('clear')
+    print('INFORMATIONS DE L\'APPAREIL')
+    print('[ Status: ]')
+    os.system('uname -n\n')
+    print('\n[ Noyau: ]')
+    os.system("uname -s")
+    print("\n[ Version du noyau: ]")
+    os.system("uname -v")
+    os.system("uname -r")
+    print("\n[ OS: ]")
+    os.system("uname -o")
+    print("\n[ Matériel: ]")
+    os.system("uname -m")
+    print("\n[ Processeur: ]")
+    os.system("uname -p")
+    print("\n[ Status matériel: ]")
+    os.system("uname -i")
+    time.sleep(4)
+    Index()
 
 def brut_ftp():
 	os.system('clear')
@@ -208,11 +203,11 @@ def Index():
   	'''+W+'''
 	<======= Secondaire =======>
 	'''+H+'''
-  	4) Cryptage de données (en construction)
+  	4) Cryptage de données
   	5) Attaques Dos
   	6) Mon système
     7) Outil de navigation
-    	8) Sortir
+    8) Sortir
   	'''+W+'''(---------Informations---------)
      Tapez 'help' pour savoir comment utiliser le guide.
 	'''+E)

