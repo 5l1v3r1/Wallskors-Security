@@ -45,7 +45,7 @@ def tol():
   	'''+W+'''(---------+---------)
 '''+E)
 	try:
-		v = input(G+'Wallskors/navigateur-»')
+		v = input(G+'Wallskors»Navigateur-»')
 		if (v != 3):
 			b = input('Insérez le lien du site->')
 		else:
@@ -136,7 +136,6 @@ def cinq():
 		os.system('python3 modules/dos.py '+site)
 
 def six():
-    f
     os.system('clear')
     print('INFORMATIONS DE L\'APPAREIL')
     print('[ Status: ]')
