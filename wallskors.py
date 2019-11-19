@@ -1,5 +1,5 @@
 # Create python3
-# Author Brody404
+# Author Wallskors
 
 import urllib.request  as urllib2
 import re
@@ -20,19 +20,21 @@ def info():
   print("\n[ OS: ]")
   os.system("uname -o")
   print(G+"""
-   Wallskors Security
-   Contact : brodywallskors@gmail.com
+   Wallskors Security Program 1.0
+   Contact : fondateur@wallskors.com
    """)
 
 def heads():
     global head
     head = E + F + """
- ____  _____ ____  ____  _   _    _    _  _______ 
-|  _ \| ____|  _ \/ ___|| \ | |  / \  | |/ | ____|
-| |_) |  _| | | | \___ \|  \| | / _ \ | ' /|  _|  
-|  _ <| |___| |_| |___) | |\  |/ ___ \| . \| |___ 
-|_| \_|_____|____/|____/|_| \_/_/   \_|_|\_|_____|
-                                                  
+ _    _       _ _     _                  
+| |  | |     | | |   | |                 
+| |  | | __ _| | |___| | _____  _ __ ___ 
+| |/\| |/ _` | | / __| |/ / _ \| '__/ __|
+\  /\  / (_| | | \__ \   < (_) | |  \__ \
+ \/  \/ \__,_|_|_|___/_|\_\___/|_|  |___/
+                                         
+
 """ + E
 
 def tol():
@@ -53,7 +55,7 @@ def tol():
 	except:
 		print('Exception levée... Mauvaise insertion')
 		exit()
-	
+
 	if v == 'help':
 		info()
 	elif int(v) == 1:

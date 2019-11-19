@@ -7,6 +7,8 @@ system("clear");
 redhawk_banner();
 if (extension_loaded('curl') || extension_loaded('dom'))
   {
+  // Les extennsions sont déjà chargés
+  // Ne rien faire
   }
 else
   {
@@ -120,9 +122,8 @@ scanlist:
 	[B]  Changer de cible (Retour au menu initial) \n$red 
 	[C]  Sortir \n\n" . $cln;
 askscan:
-    userinput("Tipe tugas : ");
+    userinput("Votre choix : ");
     $scan = trim(fgets(STDIN, 1024));
-
     if (!in_array($scan, array(
         '0',
         '1',
@@ -150,7 +151,7 @@ askscan:
         'u'
     ), true))
       {
-        echo $bold . $red . "\n[!] Pilihan tidak ada!! \n\n" . $cln;
+        echo $bold . $red . "\n[!] Insérez un choix valide ! \n\n" . $cln;
         goto askscan;
       }
     else
@@ -161,7 +162,7 @@ askscan:
           }
         elseif ($scan == 'c' | $scan == 'C')
           {
-            echo "\n\n\t Selamat TENGGAL\n\n";
+            echo "\n\n\t @ bientôt\n\n";
             die();
           }
         elseif ($scan == 'b' || $scan == 'B')
@@ -173,25 +174,25 @@ askscan:
           {
             $reallink = $ipsl . $ip;
             $lwwww    = str_replace("www.", "", $ip);
-            echo "\n$cln" . $lblue . $bold . "[+] Memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target:\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[i] Tipe Tugas : BASIC SCAN" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours... \n";
+            echo $blue . $bold . "[i] Cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[i] Type de tâche: SCAN BASIQUE" . $cln;
             echo "\n\n";
-            echo $bold . $lblue . "[iNFO] Title: " . $green;
+            echo $bold . $lblue . "[iNFO] Titre: " . $green;
             echo getTitle($reallink);
             echo $cln;
             $wip = gethostbyname($ip);
-            echo $lblue . $bold . "\n[iNFO] IP address: " . $green . $wip . "\n" . $cln;
-            echo $bold . $lblue . "[iNFO] Web Server: ";
+            echo $lblue . $bold . "\n[iNFO] Adresse IP: " . $green . $wip . "\n" . $cln;
+            echo $bold . $lblue . "[iNFO] Serveur Web: ";
             WEBserver($reallink);
             echo "\n";
             echo $bold . $lblue . "[iNFO] CMS: \e[92m" . CMSdetect($reallink) . $cln;
             echo $lblue . $bold . "\n[iNFO] Cloudflare: ";
             cloudflaredetect($lwwww);
-            echo $lblue . $bold . "[iNFO] Robots File:$cln ";
+            echo $lblue . $bold . "[iNFO] Fichier Robots:$cln ";
             robotsdottxt($reallink);
             echo "\n\n";
-            echo $bold . $yellow . "[#] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -199,15 +200,15 @@ askscan:
           {
             $reallink = $ipsl . $ip;
             $lwwww    = str_replace("www.", "", $ip);
-            echo "\n$cln" . $lblue . $bold . "[+] Memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target:\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[S] Tipe tugas : WHOIS Lookup" . $cln;
-            echo $bold . $lblue . "\n[~] Ditemukan WHOIS : \n\n" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours ... \n";
+            echo $blue . $bold . "[i] Cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[S] Type de tâche: WHOIS Lookup" . $cln;
+            echo $bold . $lblue . "\n[~] WHOIS : \n\n" . $cln;
             $urlwhois    = "http://api.hackertarget.com/whois/?q=" . $lwwww;
             $resultwhois = file_get_contents($urlwhois);
             echo $bold . $fgreen . $resultwhois;
             echo "\n\n";
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -215,9 +216,9 @@ askscan:
           {
             $reallink = $ipsl . $ip;
             $lwwww    = str_replace("www.", "", $ip);
-            echo "\n$cln" . $lblue . $bold . "[+] Memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target :\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[S] Tipe tugas : GEO-IP Lookup" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours... \n";
+            echo $blue . $bold . "[i] Cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[S] Type de tâche: GEO-IP Lookup" . $cln;
             echo "\n\n";
             $urlgip    = "http://api.hackertarget.com/geoip/?q=" . $lwwww;
             $resultgip = readcontents($urlgip);
@@ -227,7 +228,7 @@ askscan:
                 echo $bold . $lblue . "[GEO-IP]$green $geoip \n";
               }
             echo "\n\n";
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -235,9 +236,9 @@ askscan:
           {
             $reallink = $ipsl . $ip;
             $lwwww    = str_replace("www.", "", $ip);
-            echo "\n$cln" . $lblue . $bold . "[+] Memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target:\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[S] Tipe tugas : Banner Grabbing" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours ... \n";
+            echo $blue . $bold . "[i] Cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[S] Type de tâche: Banner Grabbing" . $cln;
             echo "\n\n";
             $hdr = get_headers($reallink);
             foreach ($hdr as $shdr)
@@ -245,7 +246,7 @@ askscan:
                 echo $bold . $lblue . "\n" . $green . $shdr;
               }
             echo "\n\n";
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -253,9 +254,9 @@ askscan:
           {
             $reallink = $ipsl . $ip;
             $lwwww    = str_replace("www.", "", $ip);
-            echo "\n$cln" . $lblue . $bold . "[+] Memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target :\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[S] Tipe tugas : DNS Lookup" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours ... \n";
+            echo $blue . $bold . "[i] Cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[S] Type de tâche: DNS Lookup" . $cln;
             echo "\n\n";
             $urldlup    = "http://api.hackertarget.com/dnslookup/?q=" . $lwwww;
             $resultdlup = readcontents($urldlup);
@@ -266,7 +267,7 @@ askscan:
                 echo $bold . $lblue . "\n[DNS Lookup] " . $green . $dnslkup;
               }
             echo "\n\n";
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -274,9 +275,9 @@ askscan:
           {
             $reallink = $ipsl . $ip;
             $lwwww    = str_replace("www.", "", $ip);
-            echo "\n$cln" . $lblue . $bold . "[+] Memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target :\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[S] Tipe tugas : SubNet Calculator" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours ... \n";
+            echo $blue . $bold . "[i] Cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[S] Type de tâche: SubNet Calculator" . $cln;
             echo "\n\n";
             $urlscal    = "http://api.hackertarget.com/subnetcalc/?q=" . $lwwww;
             $resultscal = readcontents($urlscal);
@@ -287,7 +288,7 @@ askscan:
                 echo $bold . $lblue . "\n[SubNet Calc] " . $green . $sc;
               }
             echo "\n\n";
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -295,22 +296,22 @@ askscan:
           {
             $reallink = $ipsl . $ip;
             $lwwww    = str_replace("www.", "", $ip);
-            echo "\n$cln" . $lblue . $bold . "[+] Memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target :\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[S] Tipe tugas : Subdomain Scanner" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours ... \n";
+            echo $blue . $bold . "[i] Cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[S] Type de tâche: Subdomain Scanner" . $cln;
             $urlsd      = "http://api.hackertarget.com/hostsearch/?q=" . $lwwww;
             $resultsd   = readcontents($urlsd);
             $subdomains = trim($resultsd, "\n");
             $subdomains = explode("\n", $subdomains);
             unset($subdomains['0']);
             $sdcount = count($subdomains);
-            echo "\n" . $blue . $bold . "[i] Total Subdomain ketemu : " . $green . $sdcount . "\n\n" . $cln;
+            echo "\n" . $blue . $bold . "[i] Nombre total de sous-domaines trouvés: " . $green . $sdcount . "\n\n" . $cln;
             foreach ($subdomains as $subdomain)
               {
-                echo $bold . $lblue . "[+] Subdomain : $fgreen" . (str_replace(",", "\n\e[36m[-] IP: $fgreen", $subdomain));
+                echo $bold . $lblue . "[+] Sous-domaine: $fgreen" . (str_replace(",", "\n\e[36m[-] IP: $fgreen", $subdomain));
                 echo "\n\n" . $cln;
               }
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -318,15 +319,15 @@ askscan:
           {
             $reallink = $ipsl . $ip;
             $lwwww    = str_replace("www.", "", $ip);
-            echo "\n$cln" . $lblue . $bold . "[+] memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target:\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[S] Tipe tugas : Nmap Port Scan" . $cln;
-            echo $bold . $lblue . "\n[~] Port didapat : \n\n" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours ... \n";
+            echo $blue . $bold . "[i] Cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[S] Type de tâche : Nmap Port Scan" . $cln;
+            echo $bold . $lblue . "\n[~] Port obtenu : \n\n" . $cln;
             $urlnmap    = "http://api.hackertarget.com/nmap/?q=" . $lwwww;
             $resultnmap = readcontents($urlnmap);
             echo $bold . $fgreen . $resultnmap;
             echo "\n\n";
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -335,9 +336,9 @@ askscan:
             $reallink  = $ipsl . $ip;
             $lwwww     = str_replace("www.", "", $ip);
             $detectcms = "yes";
-            echo "\n$cln" . $lblue . $bold . "[+] Memulai tugas ... \n";
-            echo $blue . $bold . "[i] Target:\e[92m $ipsl" . "$ip \n";
-            echo $bold . $yellow . "[S] Tipe tugas : Reverse IP Lookup & CMS Detection" . $cln;
+            echo "\n$cln" . $lblue . $bold . "[+] Execution en cours ... \n";
+            echo $blue . $bold . "[i] cible:\e[92m $ipsl" . "$ip \n";
+            echo $bold . $yellow . "[S] Type de tâche : Reverse IP Lookup & CMS Detection" . $cln;
             echo "\n";
             $sth = 'http://domains.yougetsignal.com/domains.php';
             $ch  = curl_init($sth);
@@ -350,10 +351,10 @@ askscan:
             $array = explode(",,", $resp);
             unset($array[0]);
 
-            echo $bold . $lblue . "[i] Website yg terhubung :$cln " . $green . count($array) . "\n\n$cln";
+            echo $bold . $lblue . "[i] Site connecté:$cln " . $green . count($array) . "\n\n$cln";
             if (count($array) > 0)
               {
-                userinput("Ingin mencari CMS yg di gunakan? [Y/N]");
+                userinput("Vous voulez trouver le CMS utilisé? [Y/N]");
                 $detectcmsui = trim(fgets(STDIN, 1024));
                 if ($detectcmsui == "y" | $detectcmsui == "Y")
                   {
@@ -368,15 +369,15 @@ askscan:
               {
                 $izox   = str_replace(",", "", $izox);
                 $cmsurl = "http://" . $izox;
-                echo "\n" . $bold . $lblue . "HOSTNAME : " . $fgreen . $izox . $cln;
-                echo "\n" . $bold . $lblue . "IP       : " . $fgreen . gethostbyname($izox) . $cln . "\n";
+                echo "\n" . $bold . $lblue . "HOTE : " . $fgreen . $izox . $cln;
+                echo "\n" . $bold . $lblue . "IP : " . $fgreen . gethostbyname($izox) . $cln . "\n";
                 if ($detectcms == "yes")
                   {
-                    echo $lblue . $bold . "CMS      : " . $green . CMSdetect($cmsurl) . $cln . "\n\n";
+                    echo $lblue . $bold . "CMS : " . $green . CMSdetect($cmsurl) . $cln . "\n\n";
                   }
               }
             echo "\n\n";
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }
@@ -427,7 +428,7 @@ askscan:
               }
             echo "\n" . $blue . $bold . "[+] Url dan parameter yg di temukan : " . $green . $vlnk;
             echo "\n\n";
-            echo $bold . $yellow . "[*] Tugas selesai. tekan enter untuk melanjutkan atau ketik ctrl+C untuk keluar.\n\n";
+            echo $bold . $yellow . "[#] La tâche est terminée. Appuyez sur Entrée pour continuer ou tapez Ctrl + C pour quitter.\n\n";
             trim(fgets(STDIN, 1024));
             goto scanlist;
           }

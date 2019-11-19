@@ -35,8 +35,8 @@ def beta():
         sys.exit()
     else:
         omega()
-print "\t\033[1;31mDELTA Brody404\033[1;31m"
-print """\033[1;97mWallskors Security version DELTA\033[1;m"""
+print "\t\033[1;31m RedSnake\033[1;31m"
+print """\033[1;97mWallskors Security\033[1;m"""
 print "\033[1;32mServers database: Alpha, Beta, Gamma, Delta, Omega, Lambda, hashKiller\033[1;m"
 hashvalue = raw_input('\033[97mCode de hachage: \033[1;m').lower()
 if len(hashvalue) == 32:
@@ -52,7 +52,7 @@ if len(hashvalue) == 32:
         data = urlencode({"md5":hashvalue,"x":"21","y":"8"})
         html = urlopen("http://md5.my-addr.com/md5_decrypt-md5_cracker_online/md5_decoder_tool.php", data)
         find = html.read()
-        match = search (r"<span class='middle_title'>Vous cherchez un hachage correspondant.</span>: [^<]*</div>", find)    
+        match = search (r"<span class='middle_title'>Vous cherchez un hachage correspondant.</span>: [^<]*</div>", find)
         if match:
             print "\n\033[1;32m[+] Hash effectué avec succès :\033[1;m", match.group().split('span')[2][3:-6]
             sys.exit()

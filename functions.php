@@ -53,7 +53,6 @@ function CMSdetect($reallink){
   if (strpos($cmssc, '/wp-content/') !== false)
     {
       $tcms = "WordPress";
-
     }
   else
     {
